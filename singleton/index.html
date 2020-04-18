@@ -6,8 +6,30 @@
 </head>
 <body>
 <button id="login">login</button>
-<button id="list">list click</button>
+<button id="list-button">list click</button>
+<ul id="list-body"></ul>
 <script>
+
+    const listApiSimulation = () => {
+        return new Promise((resolve, reject) => {
+            const success = true;
+            if (success) {
+                setTimeout(() => {
+                    resolve([
+                        {
+                            name: 'demo-A',
+                        },
+                        {
+                            name: 'demo-B',
+                        }
+                    ]);
+                }, 1000);
+            } else {
+                reject([]);
+            }
+        });
+    };
+
     // 不易變的部分, 獨立出來
     const createSingle = function(target) {
         let result;
@@ -17,32 +39,43 @@
         }
     };
 
-    const LoginLayout = function () {
-        const div = document.createElement('div');
-        div.innerHTML = '我是 login dialog';
-        div.style.display = 'none';
-        document.body.appendChild(div);
+    // const LoginLayout = function () {
+    //     const div = document.createElement('div');
+    //     div.innerHTML = '我是 login dialog';
+    //     div.style.display = 'none';
+    //     document.body.appendChild(div);
+    //
+    //     return div;
+    // };
+    //
+    // const HeaderLayout = function () {
+    //     const div = document.createElement('div');
+    //     div.innerHTML = '我是 Header';
+    //     div.style.display = 'none';
+    //     document.body.appendChild(div);
+    //
+    //     return div;
+    // };
+    //
+    // const createSingleLogin = createSingle(LoginLayout);
+    // const createSingleHeader = createSingle(HeaderLayout);
+    //
+    // document.getElementById('login').onclick = () => {
+    //     const loginLayout = createSingleLogin();
+    //     const headerLayout = createSingleHeader();
+    //     loginLayout.style.display = 'block';
+    //     headerLayout.style.display = 'block';
+    // };
 
-        return div;
-    };
+    function ListItem(name) {
+        this.name = name;
+    }
 
-    const HeaderLayout = function () {
-        const div = document.createElement('div');
-        div.innerHTML = '我是 Header';
-        div.style.display = 'none';
-        document.body.appendChild(div);
-
-        return div;
-    };
-
-    const createSingleLogin = createSingle(LoginLayout);
-    const createSingleHeader = createSingle(HeaderLayout);
-
-    document.getElementById('login').onclick = () => {
-        const loginLayout = createSingleLogin();
-        const headerLayout = createSingleHeader();
-        loginLayout.style.display = 'block';
-        headerLayout.style.display = 'block';
+    const callListApi = function() {
+        let apiRespond;
+        return listApiSimulation().then((respond) => {
+            return apiRespond = respond;
+        });
     };
 
     const bindListClink = createSingle(function () {
@@ -54,14 +87,22 @@
     });
 
     const renderList = function () {
-        console.log('start render');
-        bindListClink();
+        let listData = callListApi();
+
+        let list = listData.map((item) => {
+            return item = new ListItem(item.name);
+        });
+        // bindListClink();
     };
 
-    renderList();
-    renderList();
-    renderList();
-    renderList();
+    setTimeout(() => {
+        renderList();
+    }, 4000)
+    //
+    // renderList();
+    // renderList();
+    // renderList();
+    // renderList();
 </script>
 </body>
 </html>
