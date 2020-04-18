@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Singleton</title>
+</head>
+<body>
+<button id="login">login</button>
+<button id="list">list click</button>
+<script>
+    // 不易變的部分, 獨立出來
+    const createSingle = function(target) {
+        let result;
+
+        return function () {
+            return result || (result = target.apply(this, arguments));
+        }
+    };
+
+    const LoginLayout = function () {
+        const div = document.createElement('div');
+        div.innerHTML = '我是 login dialog';
+        div.style.display = 'none';
+        document.body.appendChild(div);
+
+        return div;
+    };
+
+    const HeaderLayout = function () {
+        const div = document.createElement('div');
+        div.innerHTML = '我是 Header';
+        div.style.display = 'none';
+        document.body.appendChild(div);
+
+        return div;
+    };
+
+    const createSingleLogin = createSingle(LoginLayout);
+    const createSingleHeader = createSingle(HeaderLayout);
+
+    document.getElementById('login').onclick = () => {
+        const loginLayout = createSingleLogin();
+        const headerLayout = createSingleHeader();
+        loginLayout.style.display = 'block';
+        headerLayout.style.display = 'block';
+    };
+
+    const bindListClink = createSingle(function () {
+        console.log('start binding');
+        document.getElementById('list').onclick = () => {
+            alert('have click');
+        };
+        return true;
+    });
+
+    const renderList = function () {
+        console.log('start render');
+        bindListClink();
+    };
+
+    renderList();
+    renderList();
+    renderList();
+    renderList();
+</script>
+</body>
+</html>
