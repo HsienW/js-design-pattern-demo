@@ -31,7 +31,7 @@
     };
 
     // 不易變的部分, 獨立出來
-    const createSingle = function(target) {
+    const createSingle = function (target) {
         let result;
 
         return function () {
@@ -71,38 +71,69 @@
         this.name = name;
     }
 
-    const callListApi = function() {
-        let apiRespond;
-        return listApiSimulation().then((respond) => {
-            return apiRespond = respond;
-        });
+    ListItem.prototype.clickItem = function (name) {
+        alert(name);
     };
 
-    const bindListClink = createSingle(function () {
-        console.log('start binding');
-        document.getElementById('list').onclick = () => {
-            alert('have click');
-        };
-        return true;
-    });
+    // const callListApi = function() {
+    //     let apiRespond;
+    //     listApiSimulation().then((respond) => {
+    //         apiRespond = respond;
+    //     });
+    //
+    //     return apiRespond;
+    // };
+
+    // const bindListClink = createSingle(function () {
+    //     console.log('start binding');
+    //     document.getElementById('list').onclick = () => {
+    //         alert('have click');
+    //     };
+    //     return true;
+    // });
+
+    const createListItemLayout = function (item) {
+        const listNode = document.getElementById('list-body');
+        const itemNode = document.createElement('li');
+        itemNode.innerHTML = item.name;
+        listNode.appendChild(itemNode);
+    };
 
     const renderList = function () {
-        let listData = callListApi();
+        // let listData;
+        listApiSimulation().then((respond) => {
 
-        let list = listData.map((item) => {
-            return item = new ListItem(item.name);
+            const list = document.getElementById('list-body');
+            list.addEventListener('click', function () {
+                console.log(this);
+            }, false);
+
+            respond.map((item) => {
+                item = new ListItem(item.name);
+                return createListItemLayout(item);
+            });
+
+            // console.log('yyyyyyyyy');
+            // console.log(listData);
         });
+
+        // console.log(listData);
+        //
+        // let list = listData.map((item) => {
+        //     return item = new ListItem(item.name);
+        // });
+
         // bindListClink();
     };
 
-    setTimeout(() => {
+    const renderLoop = setInterval(() => {
         renderList();
-    }, 4000)
-    //
-    // renderList();
-    // renderList();
-    // renderList();
-    // renderList();
+    }, 1000);
+
+    setTimeout(() => {
+        clearInterval(renderLoop);
+    }, 10000);
+
 </script>
 </body>
 </html>
