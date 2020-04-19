@@ -10,27 +10,41 @@
 <ul id="list-body"></ul>
 <script>
 
-    const listApiSimulation = () => {
-        return new Promise((resolve, reject) => {
-            const success = true;
-            if (success) {
-                setTimeout(() => {
-                    resolve([
-                        {
-                            name: 'demo-A',
-                        },
-                        {
-                            name: 'demo-B',
-                        }
-                    ]);
-                }, 1000);
-            } else {
-                reject([]);
-            }
-        });
+    // const listApiSimulation = () => {
+    //     return new Promise((resolve, reject) => {
+    //         const success = true;
+    //         if (success) {
+    //             setTimeout(() => {
+    //                 resolve([
+    //                     {
+    //                         name: 'demo-A',
+    //                     },
+    //                     {
+    //                         name: 'demo-B',
+    //                     }
+    //                 ]);
+    //             }, 1000);
+    //         } else {
+    //             reject([]);
+    //         }
+    //     });
+    // };
+
+    // es5
+    // 不易變的部分, 獨立出來
+
+    const Singleton = function (name) {
+        this.name = name;
+        this.instance = null;
     };
 
-    // 不易變的部分, 獨立出來
+    Singleton.getInstance = function (name) {
+        if (!this.instance) {
+            this.instance = new Singleton(name);
+        }
+        return this.instance;
+    };
+
     const createSingle = function (target) {
         let result;
 
@@ -39,41 +53,56 @@
         }
     };
 
-    // const LoginLayout = function () {
-    //     const div = document.createElement('div');
-    //     div.innerHTML = '我是 login dialog';
-    //     div.style.display = 'none';
-    //     document.body.appendChild(div);
-    //
-    //     return div;
-    // };
-    //
-    // const HeaderLayout = function () {
-    //     const div = document.createElement('div');
-    //     div.innerHTML = '我是 Header';
-    //     div.style.display = 'none';
-    //     document.body.appendChild(div);
-    //
-    //     return div;
-    // };
-    //
-    // const createSingleLogin = createSingle(LoginLayout);
-    // const createSingleHeader = createSingle(HeaderLayout);
-    //
-    // document.getElementById('login').onclick = () => {
-    //     const loginLayout = createSingleLogin();
-    //     const headerLayout = createSingleHeader();
-    //     loginLayout.style.display = 'block';
-    //     headerLayout.style.display = 'block';
-    // };
+    const LoginLayout = function () {
+        const div = document.createElement('div');
+        div.innerHTML = '我是 login dialog';
+        div.style.display = 'none';
+        document.body.appendChild(div);
 
-    function ListItem(name) {
-        this.name = name;
+        return div;
+    };
+
+    const HeaderLayout = function () {
+        const div = document.createElement('div');
+        div.innerHTML = '我是 Header';
+        div.style.display = 'none';
+        document.body.appendChild(div);
+
+        return div;
+    };
+
+    const createSingleLogin = createSingle(LoginLayout);
+    const createSingleHeader = createSingle(HeaderLayout);
+
+    document.getElementById('login').onclick = () => {
+        const loginLayout = createSingleLogin();
+        const headerLayout = createSingleHeader();
+        loginLayout.style.display = 'block';
+        headerLayout.style.display = 'block';
+    };
+
+    // es6
+    class SingletonES6 {
+        constructor(name) {
+            this.name = name;
+            this.instance = null;
+        }
+
+        static getInstance(name) {
+            if (!this.instance) {
+                this.instance = new SingletonES6(name);
+            }
+            return this.instance;
+        }
     }
 
-    ListItem.prototype.clickItem = function (name) {
-        alert(name);
-    };
+    // function ListItem(name) {
+    //     this.name = name;
+    // };
+
+    // ListItem.prototype.clickItem = function (name) {
+    //     alert(name);
+    // };
 
     // const callListApi = function() {
     //     let apiRespond;
@@ -92,47 +121,47 @@
     //     return true;
     // });
 
-    const createListItemLayout = function (item) {
-        const listNode = document.getElementById('list-body');
-        const itemNode = document.createElement('li');
-        itemNode.innerHTML = item.name;
-        listNode.appendChild(itemNode);
-    };
+    // const createListItemLayout = function (item) {
+    //     const listNode = document.getElementById('list-body');
+    //     const itemNode = document.createElement('li');
+    //     itemNode.innerHTML = item.name;
+    //     listNode.appendChild(itemNode);
+    // };
+    //
+    // const renderList = function () {
+    //     // let listData;
+    //
+    //     const list = document.getElementById('list-body');
+    //     list.addEventListener('click', function () {
+    //         console.log(this);
+    //     }, false);
+    //
+    //     listApiSimulation().then((respond) => {
+    //         respond.map((item) => {
+    //             item = new ListItem(item.name);
+    //             return createListItemLayout(item);
+    //         });
+    //
+    //         // console.log('yyyyyyyyy');
+    //         // console.log(listData);
+    //     });
 
-    const renderList = function () {
-        // let listData;
-        listApiSimulation().then((respond) => {
+    // console.log(listData);
+    //
+    // let list = listData.map((item) => {
+    //     return item = new ListItem(item.name);
+    // });
 
-            const list = document.getElementById('list-body');
-            list.addEventListener('click', function () {
-                console.log(this);
-            }, false);
+    // bindListClink();
+    // };
 
-            respond.map((item) => {
-                item = new ListItem(item.name);
-                return createListItemLayout(item);
-            });
-
-            // console.log('yyyyyyyyy');
-            // console.log(listData);
-        });
-
-        // console.log(listData);
-        //
-        // let list = listData.map((item) => {
-        //     return item = new ListItem(item.name);
-        // });
-
-        // bindListClink();
-    };
-
-    const renderLoop = setInterval(() => {
-        renderList();
-    }, 1000);
-
-    setTimeout(() => {
-        clearInterval(renderLoop);
-    }, 10000);
+    // const renderLoop = setInterval(() => {
+    //     renderList();
+    // }, 1000);
+    //
+    // setTimeout(() => {
+    //     clearInterval(renderLoop);
+    // }, 10000);
 
 </script>
 </body>
