@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Strategy</title>
+</head>
+<body>
+<form id="registerFrom" method="post">
+    <div>Account: <input type="text" name="account"/></div>
+    <div>Password: <input type="text" name="password"/></div>
+    <div>E-mail: <input type="text" name="mail"/></div>
+    <button onclick="onSubmit">submit</button>
+</form>
+<script>
+    // 策略物件
+    const strategies = {
+        isNotEmpty: (value, errorMsg) => {
+            if (value === '') {
+                return errorMsg;
+            }
+        },
+        isMinLength: (value, length, errorMsg) => {
+            if (value.length < length) {
+                return errorMsg;
+            }
+        },
+        isMailFormat: (value, errorMsg) => {
+            if (!/(\w@)(\w+\.)(.+)/.test(value)) {
+                return errorMsg;
+            }
+        }
+    };
+
+    const Validator = function () {
+        this.checkRule = [];
+    };
+
+    // es6 class
+    // class Validator {
+    //     constructor(checkRule) {
+    //         this.checkRule = checkRule;
+    //     }
+    // }
+
+    Validator.prototype.add = (dom, rules) => {
+
+        for (let i = 0; rule; rules = rules[i++]) {
+            (
+                function (rule) {
+                    let strategyArray = rule.strategy.split(':');
+                    let errorMsg = rule.strategy.split(':');
+
+                    this.checkRule.push(function () {
+                        let strategy = strategyArray.shift();
+                        strategyArray.unshift(dom.value);
+                        strategyArray.push(errorMsg);
+                        return strategies[strategy].apply(dom, strategyArray);
+                    })
+                }
+            )(rule)
+        }
+
+    };
+
+    Validator.prototype.start = function () {
+        for (let i = 0; validatorFunc; this.checkRule[i++]) {
+            let errorMsg = validatorFunc();
+            if (errorMsg) {
+                return errorMsg;
+            }
+        }
+    };
+
+    const validatorFunc = function (from) {
+        const validator = new Validator();
+
+        validator.add(registerFrom.account, [
+            {
+                strategy: 'isNotEmpty',
+                errorMsg: '帳號不能為空'
+            },
+            {
+                strategy: 'isMinLength:6',
+                errorMsg: '帳號長度不能小於6個字元'
+            },
+        ]);
+
+        validator.add(registerFrom.password, [
+            {
+                strategy: 'isNotEmpty',
+                errorMsg: '密碼不能為空'
+            },
+            {
+                strategy: 'isMinLength:8',
+                errorMsg: '密碼長度不能小於8個字元'
+            },
+        ]);
+
+        validator.add(registerFrom.mail, [
+            {
+                strategy: 'isMailFormat',
+                errorMsg: 'E-mail格式不正確'
+            }
+        ]);
+
+        return validator.start();
+    };
+
+    const registerFrom = document.getElementById('registerFrom');
+    // const registerFrom = document.getElementById('registerFrom');
+
+    function onSubmit() {
+        const form = this;
+        const errorMsg = validatorFunc(form);
+        if (errorMsg) {
+            alert(errorMsg);
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
