@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Proxy</title>
+</head>
+<body>
+<script>
+    // 保護代理 - CRUD system case
+    function User(account, auth) {
+        this.account = account;
+        this.auth = auth;
+    }
+
+    function System(user) {
+        this.user = user;
+    }
+
+    User.prototype = {
+        getAccount: function () {
+            return this.account;
+        },
+        getAuth: function () {
+            return this.auth;
+        },
+        create: function () {
+            console.log("創建 item");
+        },
+        read: function () {
+            console.log("查看 item");
+        },
+        update: function () {
+            console.log("更新 item 內容");
+        },
+        delete: function () {
+            console.log("刪除 item");
+        }
+    };
+
+    System.prototype = {
+        getUser: function () {
+            return this.user;
+        },
+        create: function () {
+            if (this.user.getAuth() === "member" || this.user.getAuth() === "author") {
+                return this.user.create();
+            }
+            console.log("請登入系統");
+        },
+        read: function () {
+            if (this.user.getAuth() === "member" || this.user.getAuth() === "author") {
+                return this.user.read();
+            }
+            console.log("請登入系統");
+        },
+        update: function () {
+            if (this.user.getAuth() === "author") {
+                return this.user.update();
+            }
+            console.log("沒有權限編輯與更新");
+        },
+        delete: function () {
+            if (this.user.getAuth() === "author") {
+                return this.user.delete();
+            }
+            console.log("沒有權限刪除");
+        }
+    };
+
+    const userA = new User('123', 'member');
+    const userB = new User('456', 'author');
+    new System(userA).update();
+    new System(userB).update();
+
+
+</script>
+</body>
+</html>
