@@ -6,87 +6,120 @@
 </head>
 <body>
 <script>
+
+    // Base case
+    function SushiShop() { // 目標的
+        this.product = 'Sushi';
+        this.sandSushi = function () {
+            console.log('壽司店收到訂單, 送出食物');
+            return this.product;
+        };
+    }
+
+    function Customer(name) { // 發出的
+        this.name = name;
+        this.proxy = new FoodProxySystem();
+        this.buyFood = function () {
+            console.log('我叫' + this.name + ', 我肚子餓下單買壽司');
+            this.proxy.proxyBuyFood(this.name);
+        };
+    }
+
+    function FoodProxySystem() { // 代理
+        this.sushiShop = new SushiShop();
+        this.proxyBuyFood = function (customerName) {
+            console.log('美食系統幫' + customerName + '下單給壽司店');
+            this.sushiShop.sandSushi();
+        };
+    }
+
+    function hungerBuyFood() {
+        new Customer('Andy').buyFood();
+    }
+
+    hungerBuyFood();
+
     // Base
-    function Sender() {
-        this.senderState = false;
-        this.send = function (proxy) {
-            this.senderState = true;
-            proxy.start();
-            console.log('A: 幫我寄出貨物');
-        };
-        this.check = function (proxy) {
-            console.log('A check: 請問貨物到了嗎?');
-            console.log(proxy.checkPackageState());
-        }
-    }
-
-    function Receiver() {
-        this.receiveState = false;
-        this.receiveDone = function () {
-            this.receiveState = true;
-            console.log('B: 收到貨物了');
-        };
-        this.check = function (proxy) {
-            console.log('B check: 請問貨物到了嗎?');
-            console.log(proxy.checkPackageState());
-        }
-    }
-
-    function Express() {
-        this.packageOngoing = false;
-        this.checkPackageState = function () {
-            return this.packageOngoing ? 'Express: 貨物運送中' : 'Express: 已送達';
-        };
-        this.start = function () {
-            this.packageOngoing = true;
-        };
-        this.done = function (receiver) {
-            this.packageOngoing = false;
-            receiver.receiveDone();
-        };
-        // this.start = () => {
-        //     console.log('我是' + name + '快遞');
-        //     console.log(this.sender.name + '你好' + '請寫送貨單');
-        //     console.log('代收貨物完, 準備寄送');
-        // };
-        // this.going = () => {
-        //     console.log('我是' + name + '快遞' + '貨物運送中');
-        // };
-        // this.arrive = () => {
-        //     console.log('我是' + name + '快遞');
-        //     console.log(this.receiver.name + '你好' + '請寫收貨單');
-        //     console.log('代收貨物送完');
-        // };
-        // this.done = () => {
-        //     console.log('我是' + name + '快遞' + '貨物運送完成');
-        // }
-    }
-
-    const personA = new Sender();
-    const personB = new Receiver();
-    const pandaExpress = new Express();
-
-    personA.send(pandaExpress);
-
-    setTimeout(() => {
-        console.log('==========================');
-        personA.check(pandaExpress);
-    }, 2000);
-
-    setTimeout(() => {
-        console.log('==========================');
-        personB.check(pandaExpress);
-    }, 4000);
-
-    setTimeout(() => {
-        console.log('==========================');
-        pandaExpress.done(personB);
-    }, 6000);
-
-    setTimeout(() => {
-        console.log('==========================');
-        personA.check(pandaExpress);
-    }, 8000);
+    // function Sender() {
+    //     this.senderState = false;
+    //     this.send = function (proxy) {
+    //         this.senderState = true;
+    //         proxy.start();
+    //         console.log('A: 幫我寄出貨物');
+    //     };
+    //     this.check = function (proxy) {
+    //         console.log('A check: 請問貨物到了嗎?');
+    //         console.log(proxy.checkPackageState());
+    //     }
+    // }
+    //
+    // function Receiver() {
+    //     this.receiveState = false;
+    //     this.receiveDone = function () {
+    //         this.receiveState = true;
+    //         console.log('B: 收到貨物了');
+    //     };
+    //     this.check = function (proxy) {
+    //         console.log('B check: 請問貨物到了嗎?');
+    //         console.log(proxy.checkPackageState());
+    //     }
+    // }
+    //
+    // function Express() {
+    //     this.packageOngoing = false;
+    //     this.checkPackageState = function () {
+    //         return this.packageOngoing ? 'Express: 貨物運送中' : 'Express: 已送達';
+    //     };
+    //     this.start = function () {
+    //         this.packageOngoing = true;
+    //     };
+    //     this.done = function (receiver) {
+    //         this.packageOngoing = false;
+    //         receiver.receiveDone();
+    //     };
+    //     // this.start = () => {
+    //     //     console.log('我是' + name + '快遞');
+    //     //     console.log(this.sender.name + '你好' + '請寫送貨單');
+    //     //     console.log('代收貨物完, 準備寄送');
+    //     // };
+    //     // this.going = () => {
+    //     //     console.log('我是' + name + '快遞' + '貨物運送中');
+    //     // };
+    //     // this.arrive = () => {
+    //     //     console.log('我是' + name + '快遞');
+    //     //     console.log(this.receiver.name + '你好' + '請寫收貨單');
+    //     //     console.log('代收貨物送完');
+    //     // };
+    //     // this.done = () => {
+    //     //     console.log('我是' + name + '快遞' + '貨物運送完成');
+    //     // }
+    // }
+    //
+    // const personA = new Sender();
+    // const personB = new Receiver();
+    // const pandaExpress = new Express();
+    //
+    // personA.send(pandaExpress);
+    //
+    // setTimeout(() => {
+    //     console.log('==========================');
+    //     personA.check(pandaExpress);
+    // }, 2000);
+    //
+    // setTimeout(() => {
+    //     console.log('==========================');
+    //     personB.check(pandaExpress);
+    // }, 4000);
+    //
+    // setTimeout(() => {
+    //     console.log('==========================');
+    //     pandaExpress.done(personB);
+    // }, 6000);
+    //
+    // setTimeout(() => {
+    //     console.log('==========================');
+    //     personA.check(pandaExpress);
+    // }, 8000);
     //
     // // Start send package
     // personA.send();
