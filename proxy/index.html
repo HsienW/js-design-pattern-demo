@@ -6,71 +6,130 @@
 </head>
 <body>
 <script>
-    // 保護代理 - CRUD system case
-    function User(account, auth) {
-        this.account = account;
-        this.auth = auth;
+    // Base
+    
+    function Sender(name) {
+        this.name = name;
+        this.send = () => {
+            console.log('我是' + name + '幫我寄出貨物');
+        };
+        this.check = () => {
+            console.log('我是' + name + '請問貨物到了嗎?');
+        }
     }
 
-    function System(user) {
-        this.user = user;
+    function Receiver(name) {
+        this.name = name;
+        this.receive = () => {
+            console.log('我是' + name + '收到貨物');
+        }
     }
 
-    User.prototype = {
-        getAccount: function () {
-            return this.account;
-        },
-        getAuth: function () {
-            return this.auth;
-        },
-        create: function () {
-            console.log("創建 item");
-        },
-        read: function () {
-            console.log("查看 item");
-        },
-        update: function () {
-            console.log("更新 item 內容");
-        },
-        delete: function () {
-            console.log("刪除 item");
+    function Express(name, sender, receiver) {
+        this.name = name;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.start = () => {
+            console.log('我是' + name + '快遞');
+            console.log(this.sender.name + '你好' + '請寫送貨單');
+            console.log('代收貨物完, 準備寄送');
+        };
+        this.going = () => {
+            console.log('我是' + name + '快遞' + '貨物運送中');
+        };
+        this.arrive = () => {
+            console.log('我是' + name + '快遞');
+            console.log(this.receiver.name + '你好' + '請寫收貨單');
+            console.log('代收貨物送完');
+        };
+        this.done = () => {
+            console.log('我是' + name + '快遞' + '貨物運送完成');
         }
-    };
+    }
 
-    System.prototype = {
-        getUser: function () {
-            return this.user;
-        },
-        create: function () {
-            if (this.user.getAuth() === "member" || this.user.getAuth() === "author") {
-                return this.user.create();
-            }
-            console.log("請登入系統");
-        },
-        read: function () {
-            if (this.user.getAuth() === "member" || this.user.getAuth() === "author") {
-                return this.user.read();
-            }
-            console.log("請登入系統");
-        },
-        update: function () {
-            if (this.user.getAuth() === "author") {
-                return this.user.update();
-            }
-            console.log("沒有權限編輯與更新");
-        },
-        delete: function () {
-            if (this.user.getAuth() === "author") {
-                return this.user.delete();
-            }
-            console.log("沒有權限刪除");
-        }
-    };
+    const personA = new Sender('personA');
+    const personB = new Receiver('personB');
+    const pandaExpress = new Express('panda', personA, personB);
 
-    const userA = new User('123', 'member');
-    const userB = new User('456', 'author');
-    new System(userA).update();
-    new System(userB).update();
+    // Start send package
+    personA.send();
+    pandaExpress.start();
+    // Send package ongoing
+    personA.check();
+    pandaExpress.going();
+    // Send package arrive to receiver
+    pandaExpress.arrive();
+    personB.receive();
+    // Send package done
+    personA.check();
+    pandaExpress.done();
+    
+
+    // // 保護代理 - CRUD system case
+    // function User(account, auth) {
+    //     this.account = account;
+    //     this.auth = auth;
+    // }
+    //
+    // function System(user) {
+    //     this.user = user;
+    // }
+    //
+    // User.prototype = {
+    //     getAccount: function () {
+    //         return this.account;
+    //     },
+    //     getAuth: function () {
+    //         return this.auth;
+    //     },
+    //     create: function () {
+    //         console.log("創建 item");
+    //     },
+    //     read: function () {
+    //         console.log("查看 item");
+    //     },
+    //     update: function () {
+    //         console.log("更新 item 內容");
+    //     },
+    //     delete: function () {
+    //         console.log("刪除 item");
+    //     }
+    // };
+    //
+    // System.prototype = {
+    //     getUser: function () {
+    //         return this.user;
+    //     },
+    //     create: function () {
+    //         if (this.user.getAuth() === "member" || this.user.getAuth() === "author") {
+    //             return this.user.create();
+    //         }
+    //         console.log("請登入系統");
+    //     },
+    //     read: function () {
+    //         if (this.user.getAuth() === "member" || this.user.getAuth() === "author") {
+    //             return this.user.read();
+    //         }
+    //         console.log("請登入系統");
+    //     },
+    //     update: function () {
+    //         if (this.user.getAuth() === "author") {
+    //             return this.user.update();
+    //         }
+    //         console.log("沒有權限編輯與更新");
+    //     },
+    //     delete: function () {
+    //         if (this.user.getAuth() === "author") {
+    //             return this.user.delete();
+    //         }
+    //         console.log("沒有權限刪除");
+    //     }
+    // };
+    //
+    // const userA = new User('123', 'member');
+    // const userB = new User('456', 'author');
+    // new System(userA).update();
+    // new System(userB).update();
 
 
 </script>

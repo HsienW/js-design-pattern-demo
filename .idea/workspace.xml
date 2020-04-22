@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2e444c3-6a3a-4a57-8339-0c71c9a18abd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/proxy/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proxy/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/proxy/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +22,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -39,14 +42,39 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1587453834013</updated>
-      <workItem from="1587453835834" duration="4332000" />
+      <workItem from="1587453835834" duration="5393000" />
+      <workItem from="1587522193269" duration="3599000" />
     </task>
+    <task id="LOCAL-00001" summary="add proxy case">
+      <created>1587459461252</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587459461252</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add proxy case" />
+    <option name="LAST_COMMIT_MESSAGE" value="add proxy case" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1587459458652">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587459458652" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1587460490356">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587460490356" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587459486431">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587459486431" />
     <state x="365" y="97" width="635" height="534" key="find.popup" timestamp="1587458544680">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
