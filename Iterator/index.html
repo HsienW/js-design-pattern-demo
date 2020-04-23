@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Iterator</title>
+</head>
+<body>
+<script>
+
+    // Base case
+
+    const Iterator = function (items) {
+        this.index = 0;
+        this.items = items;
+    };
+
+    Iterator.prototype = {
+        reset: function () {
+            this.index = 0;
+        },
+        first: function () {
+            this.reset();
+            return this.next();
+        },
+        next: function () {
+            return this.items[this.index++];
+        },
+        hasNext: function () {
+            return this.index < this.items.length;
+        },
+        each: function (callback) {
+            console.log(callback);
+            for (let item = this.first(); this.index <= this.items.length; item = this.next()) {
+                callback(item);
+            }
+        }
+    };
+
+    const userList = new Iterator(['A', 'B', 'C', 'D', 'E']);
+    const userListLog = function (item) {
+        console.log('我是' + item);
+    };
+
+    console.log(userList.hasNext());
+    console.log(userList.next());
+    console.log(userList.next());
+    console.log(userList.next());
+    // console.log(userList.next());
+    // console.log(userList.next());
+    // console.log(userList.hasNext());
+    // console.log(userList.first());
+
+    // userList.length();
+    userList.each(userListLog);
+
+</script>
+</body>
+</html>
