@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2e444c3-6a3a-4a57-8339-0c71c9a18abd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Iterator/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/publish-subscribe/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iterator/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Iterator/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,8 @@
       <workItem from="1587453835834" duration="5393000" />
       <workItem from="1587522193269" duration="10720000" />
       <workItem from="1587544862336" duration="3046000" />
-      <workItem from="1587602675887" duration="7920000" />
+      <workItem from="1587602675887" duration="8019000" />
+      <workItem from="1587620844732" duration="3526000" />
     </task>
     <task id="LOCAL-00001" summary="add proxy case">
       <created>1587459461252</created>
@@ -74,7 +76,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587547591626</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add iterator case">
+      <created>1587610617647</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1587610617647</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,21 +105,22 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add proxy case" />
     <MESSAGE value="update proxy case" />
-    <option name="LAST_COMMIT_MESSAGE" value="update proxy case" />
+    <MESSAGE value="add iterator case" />
+    <option name="LAST_COMMIT_MESSAGE" value="add iterator case" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1587547590167">
+    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1587610615601">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587547590167" />
+    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587610615601" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1587547908409">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587547908409" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587547603092">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587610632182">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587547603092" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587610632182" />
     <state x="365" y="97" width="635" height="534" key="find.popup" timestamp="1587458544680">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
