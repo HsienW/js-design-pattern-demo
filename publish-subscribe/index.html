@@ -6,42 +6,112 @@
 </head>
 <body>
 <script>
-    // Base case
-    function Subject() {
-        this.state = 0;
-        this.observerList = [];
-        this.getState = function () {
-            return this.state;
-        };
-        this.setState = function (state) {
-            this.state = state;
-            this.notify();
-        };
-        this.notify = function () {
-            this.observerList.forEach(observer => {
-                observer.update();
-            })
-        };
-        this.attach = function (observer) {
-            this.observerList.push(observer);
-        };
-    }
-
-    function Observer(name, subject) {
-        this.name = name;
-        this.subject = subject;
-        this.subject.attach(this);
-        this.update = function () {
-            console.log(`${this.name} update, state: ${this.subject.getState()}`);
-        };
-    }
-
-    let subject = new Subject();
-    let observer1 = new Observer('userA', subject);
-    let observer2 = new Observer('userB', subject);
-
-    subject.setState(1);
-    subject.setState(2);
+    // //Base case
+    // const pubsubEvent = (function () {
+    //     //預設命名
+    //     const pubsubDefault = 'default';
+    //     const Event = function () {
+    //         const slice = Array.prototype.slice,
+    //             shift = Array.prototype.shift,
+    //             unshift = Array.prototype.unshift,
+    //             namespaceCache = {};
+    //
+    //         //實作發佈訂閱等內容
+    //         const listen = function (key, fn, cache) {
+    //             if (!cache[key]) {
+    //                 cache[key] = [];
+    //             }
+    //             cache[key].push(fn);
+    //         };
+    //         const remove = function (key, cache, fn) {
+    //             if (cache[key]) {
+    //                 if (fn) {
+    //                     for (const i = cache[key].length; i >= 0; i--) {
+    //                         if (cache[key] === fn) {
+    //                             cache[key].splice(i, 1);
+    //                         }
+    //                     }
+    //                 } else {
+    //                     cache[key] = [];
+    //                 }
+    //             }
+    //         };
+    //         const trigger = function () {
+    //             const self = this;
+    //             const cache = shift.call(arguments);
+    //             const key = shift.call(arguments);
+    //             const args = arguments;
+    //             const fnPool = cache[key];
+    //             if (!fnPool || !fnPool.length) {
+    //                 return;
+    //             }
+    //             return fnPool.forEach(function (fn) {
+    //                 fn.apply(self, args);
+    //             });
+    //         };
+    //
+    //         //實作命名空間
+    //         const create = function (namespace) {
+    //             const namespace = namespace || default;
+    //             const cache = {},
+    //                 offlineStack = [],
+    //                 ret = {
+    //                     listen: function (key, fn, last) {
+    //                         listen(key, fn, cache);
+    //                         if (offlineStack === null) {
+    //                             return;
+    //                         }
+    //                         if (last === 'last') {
+    //                             offlineStack.length && offlineStack.pop()();
+    //                         } else {
+    //                             offlineStack.forEach(function (fn) {
+    //                                 fn();
+    //                             });
+    //                         }
+    //                         offlineStack = null;
+    //                     },
+    //                     remove: function (key, fn) {
+    //                         remove(key, cache, fn);
+    //                     },
+    //                     trigger: function () {
+    //                         const fn, args, self = this;
+    //                         unshift.call(arguments, cache);
+    //                         args = arguments;
+    //                         fn = function () {
+    //                             return trigger.apply(self, args);
+    //                         };
+    //                         if (offlineStack) {
+    //                             return offlineStack.push(fn);
+    //                         }
+    //                         return fn();
+    //                     }
+    //                 };
+    //             return namespace ? (namespaceCache[namespace] ?
+    //                 namespaceCache[namespace] : namespaceCache[namespace] = ret) : ret;
+    //         }
+    //
+    //         /*
+    //         回傳實際使用介面，每次使用發佈、訂閱或是刪除其實都是先進到使用命名空間的函數裡，
+    //         取得相對應的命名空間之後，再回傳相對應的函數
+    //         */
+    //         return {
+    //             create: create,
+    //             remove: function (key, fn) {
+    //                 const event = this.create();
+    //                 event.remove(key, fn);
+    //             },
+    //             listen: function (key, fn, last) {
+    //                 const event = this.create();
+    //                 event.listen(key, fn, last);
+    //             },
+    //             trigger: function () {
+    //                 const event = this.create();
+    //                 event.trigger.apply(this, arguments);
+    //             }
+    //         }
+    //     }()
+    //     return Event;
+    // })();
 </script>
 </body>
 </html>
