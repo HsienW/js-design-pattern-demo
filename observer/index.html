@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Observer</title>
+</head>
+<body>
+<script>
+    // Base case
+    function Subject() {
+        this.state = 0;
+        this.observerList = [];
+        this.getState = function () {
+            return this.state;
+        };
+        this.setState = function (state) {
+            this.state = state;
+            this.notify();
+        };
+        this.notify = function () {
+            this.observerList.forEach(observer => {
+                observer.update();
+            })
+        };
+        this.attach = function (observer) {
+            this.observerList.push(observer);
+        };
+    }
+
+    function Observer(name, subject) {
+        this.name = name;
+        this.subject = subject;
+        this.subject.attach(this);
+        this.update = function () {
+            console.log(`${this.name} update, state: ${this.subject.getState()}`);
+        };
+    }
+
+    let subject = new Subject();
+    let observer1 = new Observer('userA', subject);
+    let observer2 = new Observer('userB', subject);
+
+    subject.setState(1);
+    subject.setState(2);
+</script>
+</body>
+</html>
