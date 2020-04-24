@@ -2,46 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Publish Subscribe</title>
+    <title>Iterator</title>
 </head>
 <body>
 <script>
     // Base case
-    function Subject() {
-        this.state = 0;
-        this.observerList = [];
-        this.getState = function () {
-            return this.state;
-        };
-        this.setState = function (state) {
-            this.state = state;
-            this.notify();
-        };
-        this.notify = function () {
-            this.observerList.forEach(observer => {
-                observer.update();
-            })
-        };
-        this.attach = function (observer) {
-            this.observerList.push(observer);
-        };
-    }
+    const Iterator = function (items) {
+        this.index = 0;
+        this.items = items;
+    };
 
-    function Observer(name, subject) {
-        this.name = name;
-        this.subject = subject;
-        this.subject.attach(this);
-        this.update = function () {
-            console.log(`${this.name} update, state: ${this.subject.getState()}`);
-        };
-    }
+    Iterator.prototype = {
+        reset: function () {
+            this.index = 0;
+        },
+        first: function () {
+            this.reset();
+            return this.next();
+        },
+        next: function () {
+            return this.items[this.index++];
+        },
+        hasNext: function () {
+            return this.index < this.items.length;
+        },
+        each: function (callback) {
+            console.log(callback);
+            for (let item = this.first(); this.index <= this.items.length; item = this.next()) {
+                callback(item);
+            }
+        }
+    };
 
-    let subject = new Subject();
-    let observer1 = new Observer('userA', subject);
-    let observer2 = new Observer('userB', subject);
+    const userList = new Iterator(['A', 'B', 'C', 'D', 'E']);
+    const userListLog = function (item) {
+        console.log('我是' + item);
+    };
 
-    subject.setState(1);
-    subject.setState(2);
+    console.log(userList.hasNext());
+    console.log(userList.next());
+    console.log(userList.next());
+    console.log(userList.next());
+    // console.log(userList.next());
+    // console.log(userList.next());
+    // console.log(userList.hasNext());
+    // console.log(userList.first());
+
+    // userList.length();
+    userList.each(userListLog);
 </script>
 </body>
 </html>
