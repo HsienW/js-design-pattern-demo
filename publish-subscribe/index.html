@@ -7,111 +7,66 @@
 <body>
 <script>
     // //Base case
-    // const pubsubEvent = (function () {
-    //     //預設命名
-    //     const pubsubDefault = 'default';
-    //     const Event = function () {
-    //         const slice = Array.prototype.slice,
-    //             shift = Array.prototype.shift,
-    //             unshift = Array.prototype.unshift,
-    //             namespaceCache = {};
-    //
-    //         //實作發佈訂閱等內容
-    //         const listen = function (key, fn, cache) {
-    //             if (!cache[key]) {
-    //                 cache[key] = [];
-    //             }
-    //             cache[key].push(fn);
-    //         };
-    //         const remove = function (key, cache, fn) {
-    //             if (cache[key]) {
-    //                 if (fn) {
-    //                     for (const i = cache[key].length; i >= 0; i--) {
-    //                         if (cache[key] === fn) {
-    //                             cache[key].splice(i, 1);
-    //                         }
-    //                     }
-    //                 } else {
-    //                     cache[key] = [];
-    //                 }
-    //             }
-    //         };
-    //         const trigger = function () {
-    //             const self = this;
-    //             const cache = shift.call(arguments);
-    //             const key = shift.call(arguments);
-    //             const args = arguments;
-    //             const fnPool = cache[key];
-    //             if (!fnPool || !fnPool.length) {
-    //                 return;
-    //             }
-    //             return fnPool.forEach(function (fn) {
-    //                 fn.apply(self, args);
-    //             });
-    //         };
-    //
-    //         //實作命名空間
-    //         const create = function (namespace) {
-    //             const namespace = namespace || default;
-    //             const cache = {},
-    //                 offlineStack = [],
-    //                 ret = {
-    //                     listen: function (key, fn, last) {
-    //                         listen(key, fn, cache);
-    //                         if (offlineStack === null) {
-    //                             return;
-    //                         }
-    //                         if (last === 'last') {
-    //                             offlineStack.length && offlineStack.pop()();
-    //                         } else {
-    //                             offlineStack.forEach(function (fn) {
-    //                                 fn();
-    //                             });
-    //                         }
-    //                         offlineStack = null;
-    //                     },
-    //                     remove: function (key, fn) {
-    //                         remove(key, cache, fn);
-    //                     },
-    //                     trigger: function () {
-    //                         const fn, args, self = this;
-    //                         unshift.call(arguments, cache);
-    //                         args = arguments;
-    //                         fn = function () {
-    //                             return trigger.apply(self, args);
-    //                         };
-    //                         if (offlineStack) {
-    //                             return offlineStack.push(fn);
-    //                         }
-    //                         return fn();
-    //                     }
-    //                 };
-    //             return namespace ? (namespaceCache[namespace] ?
-    //                 namespaceCache[namespace] : namespaceCache[namespace] = ret) : ret;
-    //         }
-    //
-    //         /*
-    //         回傳實際使用介面，每次使用發佈、訂閱或是刪除其實都是先進到使用命名空間的函數裡，
-    //         取得相對應的命名空間之後，再回傳相對應的函數
-    //         */
-    //         return {
-    //             create: create,
-    //             remove: function (key, fn) {
-    //                 const event = this.create();
-    //                 event.remove(key, fn);
-    //             },
-    //             listen: function (key, fn, last) {
-    //                 const event = this.create();
-    //                 event.listen(key, fn, last);
-    //             },
-    //             trigger: function () {
-    //                 const event = this.create();
-    //                 event.trigger.apply(this, arguments);
-    //             }
-    //         }
-    //     }()
-    //     return Event;
-    // })();
+    const PubSub = (function () {
+        function PubSub() {
+        }
+        PubSub.subscribe = function (eventName, func) {
+            this.initDic(eventName);
+            this.dic[eventName].push(func);
+        };
+        PubSub.unsubscribe = function (eventName, func) {
+            this.initDic(eventName);
+            this.dic[eventName] = this.dic[eventName].filter(function (x) { return x != func; });
+            if (!this.dic[eventName].length) {
+                delete this.dic[eventName];
+            }
+        };
+        PubSub.publish = function (eventName, data) {
+            this.initDic();
+            if (this.dic[eventName])
+                for (let i = 0, a = this.dic[eventName]; i < a.length; i++) {
+                    const func = a[i];
+                    func(data);
+                }
+        };
+        PubSub.initDic = function (eventName) {
+            if (!this.dic) {
+                this.dic = {};
+            }
+            if (eventName && !this.dic[eventName]) {
+                this.dic[eventName] = [];
+            }
+        };
+        PubSub.dic = null;
+        return PubSub;
+    }());
+
+    const customer = function(name) {
+        this.name = name;
+
+        function emailReceiver(data) {
+            alert(`${this.name} -- I received an email from ${data.sender}, content: ${data.content}`);
+        }
+        PubSub.subscribe(`receiveEmail${this.name}`, emailReceiver.bind(this));
+    };
+
+    const manager = function(name) {
+        this.name = name;
+
+        this.sendMessage = (customerName, content) => {
+            PubSub.publish(`receiveEmail${customerName}`, {
+                sender: this.name,
+                content: content
+            });
+        }
+    };
+
+    let andy = new customer('Andy');
+    let billy = new customer('Billy');
+
+    let managerA = new manager('Boss');
+    managerA.sendMessage('Andy', 'you should prepare a report until tomorrow!');
+    managerA.sendMessage('Billy', 'call me!');
 </script>
 </body>
 </html>
