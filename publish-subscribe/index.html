@@ -8,52 +8,81 @@
 <script>
     // //Base case
     const PubSub = (function () {
-        function PubSub() {
+        function PubSub() {  // 顧客與老闆之間的溝通平台
         }
-        PubSub.subscribe = function (eventName, func) {
-            this.initDic(eventName);
-            this.dic[eventName].push(func);
-        };
-        PubSub.unsubscribe = function (eventName, func) {
-            this.initDic(eventName);
-            this.dic[eventName] = this.dic[eventName].filter(function (x) { return x != func; });
-            if (!this.dic[eventName].length) {
-                delete this.dic[eventName];
+
+        PubSub.subscriberList = null;
+        PubSub.initSubscribe = function (subscriber) {
+            // 初始化訂閱者
+            if (!this.subscriberList) {
+                // 檢查是否有訂閱者存在, 不存在先初始化成 object
+                this.subscriberList = {};
+            }
+            if (subscriber && !this.subscriberList[subscriber]) {
+                // 若有新訂閱者產生請求且他之前不存在 list 中, 則已 array 形式存入 list 裡
+                this.subscriberList[subscriber] = [];
             }
         };
-        PubSub.publish = function (eventName, data) {
-            this.initDic();
-            if (this.dic[eventName])
-                for (let i = 0, a = this.dic[eventName]; i < a.length; i++) {
-                    const func = a[i];
-                    func(data);
-                }
+        PubSub.subscribe = function (subscriber, noticeFunc) {
+            // 先執行初始化訂閱者
+            this.initSubscribe(subscriber);
+            // 將訂閱者的通知 function 註冊進 subscriberList
+            this.subscriberList[subscriber].push(noticeFunc);
         };
-        PubSub.initDic = function (eventName) {
-            if (!this.dic) {
-                this.dic = {};
-            }
-            if (eventName && !this.dic[eventName]) {
-                this.dic[eventName] = [];
+        PubSub.unsubscribe = function (subscriber) {
+            // this.initSubscribe(subscriber);
+            // this.subscriberList[subscriber] = this.subscriberList[subscriber].filter(function (subscriber) {
+            //     return subscriber !== noticeFunc
+            // });
+
+            // 從 subscriberList 中, 取消訂閱者的通知 function 的註冊
+            if (this.subscriberList[subscriber].length) {
+                delete this.subscriberList[subscriber];
+                alert(`${subscriber} -- 'have been cancel'`);
             }
         };
-        PubSub.dic = null;
+        PubSub.publish = function (subscriber, data) {
+            // this.initSubscribe();
+
+            // 檢查 subscriberList 中是否有訂閱者
+            if (this.subscriberList[subscriber]) {
+                // 有的話, 取出通知 function, 並執行傳送 data
+                this.subscriberList[subscriber].forEach(function (noticeFunc) {
+                    noticeFunc(data);
+                });
+            } else {
+                // 沒有的話, 跳出提示
+                alert(`${this.name} -- 'is not subscribe'`);
+            }
+            // for (let i = 0, a = this.subscriberList[subscriber]; i < a.length; i++) {
+            //     console.log('call-call-call-call-call');
+            //     console.log(this.subscriberList);
+            //     const noticeFunc = a[i];
+            //     noticeFunc(data);
+            // }
+        };
         return PubSub;
     }());
 
-    const customer = function(name) {
+    const Customer = function (name) {
         this.name = name;
-
-        function emailReceiver(data) {
+        this.emailReceiver = function (data) {
             alert(`${this.name} -- I received an email from ${data.sender}, content: ${data.content}`);
-        }
-        PubSub.subscribe(`receiveEmail${this.name}`, emailReceiver.bind(this));
+        };
+        this.confirmSubscribe = function () {
+            // 註冊訂閱者名稱&通知 function
+            PubSub.subscribe(`receiveEmail${this.name}`, this.emailReceiver.bind(this));
+        };
+        this.cancelSubscribe = function () {
+            // 取消訂閱者名稱&通知 function
+            PubSub.unsubscribe(`receiveEmail${this.name}`, this.emailReceiver.bind(this));
+        };
     };
 
-    const manager = function(name) {
+    const Manager = function (name) {
         this.name = name;
-
         this.sendMessage = (customerName, content) => {
+            // 拿到訂閱者名稱&要通知的訊息
             PubSub.publish(`receiveEmail${customerName}`, {
                 sender: this.name,
                 content: content
@@ -61,12 +90,18 @@
         }
     };
 
-    let andy = new customer('Andy');
-    let billy = new customer('Billy');
+    let andy = new Customer('Andy');
+    let billy = new Customer('Billy');
+    let managerA = new Manager('Boss');
 
-    let managerA = new manager('Boss');
-    managerA.sendMessage('Andy', 'you should prepare a report until tomorrow!');
-    managerA.sendMessage('Billy', 'call me!');
+    andy.confirmSubscribe();
+    billy.confirmSubscribe();
+
+    managerA.sendMessage('Andy', 'Notice-1 !');
+    managerA.sendMessage('Billy', 'Notice-1 !');
+
+    andy.cancelSubscribe();
+    managerA.sendMessage('Andy', 'Notice-1 !');
 </script>
 </body>
 </html>
