@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Composite</title>
+</head>
+<body>
+<button id="remove-a">Remove: Folder A</button>
+<button id="remove-b">Remove: Folder B</button>
+<button id="remove-b-item">Remove: Folder B Item</button>
+<button id="remove-all">Remove: All</button>
+<script>
+    // Base case
+    const MacroController = function () {
+        this.commandList = [];
+        this.addCommand = function (command) {
+            this.commandList.push(command)
+        };
+        this.executeCommand = function () {
+            this.commandList.forEach((item) => {item.execute()})
+        };
+        this.getCommandList = function () {
+            return this.commandList;
+        };
+        this.getCommandListItem = function () {
+            return this.commandList.map(item => item);
+        };
+    };
+
+    const removeFolderA = {
+        executeCommand: function () {
+            console.log('Remove A Folder Done!')
+        }
+    };
+
+    const removeFolderB = {
+        executeCommand: function () {
+            console.log('Remove B Folder Done!')
+        }
+    };
+
+    const removeFolderBItem = {
+        executeCommand: function () {
+            console.log('Remove B Folder Item Done!')
+        }
+    };
+
+    const FolderAController = new MacroController();
+    const FolderBController = new MacroController();
+    const allFolderController = new MacroController();
+
+    FolderAController.addCommand(removeFolderA);
+    FolderBController.addCommand(removeFolderB);
+    FolderBController.addCommand(removeFolderBItem);
+    allFolderController.addCommand(FolderAController.getCommandListItem());
+    allFolderController.addCommand(FolderBController.getCommandListItem());
+
+    document.getElementById('remove-a').onclick = function () {
+        FolderAController.executeCommand();
+    };
+
+    document.getElementById('remove-b').onclick = function () {
+        FolderBController.executeCommand();
+    };
+
+    document.getElementById('remove-b-item').onclick = function () {
+        removeFolderBItem.executeCommand();
+    };
+
+    const allRemove = (function (controllers) {
+        document.getElementById('remove-all').onclick = function () {
+            // controllers.commandList.forEach((item) => {
+            //     console.log(...item);
+            // });
+            // [...controllers].executeCommand();
+        }
+    })(allFolderController);
+</script>
+</body>
+</html>
