@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2e444c3-6a3a-4a57-8339-0c71c9a18abd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/command/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publish-subscribe/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/publish-subscribe/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +48,8 @@
       <workItem from="1587602675887" duration="8019000" />
       <workItem from="1587620844732" duration="11833000" />
       <workItem from="1587713591248" duration="5105000" />
-      <workItem from="1587950463297" duration="7311000" />
+      <workItem from="1587950463297" duration="7414000" />
+      <workItem from="1588038018927" duration="4229000" />
     </task>
     <task id="LOCAL-00001" summary="add proxy case">
       <created>1587459461252</created>
@@ -106,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587720523397</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add publish-subscribe case">
+      <created>1587957792935</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1587957792935</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,23 +137,23 @@
     <MESSAGE value="add proxy case" />
     <MESSAGE value="update proxy case" />
     <MESSAGE value="add iterator case" />
-    <MESSAGE value="add publish-subscribe case" />
     <MESSAGE value="add publish-subscribe case &amp; observer case" />
-    <option name="LAST_COMMIT_MESSAGE" value="add publish-subscribe case &amp; observer case" />
+    <MESSAGE value="add publish-subscribe case" />
+    <option name="LAST_COMMIT_MESSAGE" value="add publish-subscribe case" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1587720521874">
+    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1587957791273">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587720521874" />
+    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587957791273" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1587625166973">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587625166973" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587720545428">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587957812537">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587720545428" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587957812537" />
     <state x="365" y="97" width="635" height="534" key="find.popup" timestamp="1587458544680">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

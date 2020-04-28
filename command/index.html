@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Command</title>
+</head>
+<body>
+<script>
+    // Base case
+
+    // 接收者 Add user list
+    const ListAdd = function () { // 建立要掛入的接收者 ListAdd 實例
+    };
+    ListAdd.prototype.action = function (target) { // 接收者加上最終要執行的 action
+        console.log(`${target} list add item!`);
+    };
+    // 接收者 Less user list
+    const ListLess = function () { // 建立要掛入的接收者 ListLess 實例
+    };
+    ListLess.prototype.action = function (target) { // 接收者加上最終要執行的 action
+        console.log(`${target} list less item!`);
+    };
+
+    // 命令中心(控制器)
+    const CreateCommand = function (receiver) { // 建立 Command 實例 (控制器)
+        this.receiver = receiver; // 將實例的掛入者, 指派給自己的屬性以便操作
+    };
+    CreateCommand.prototype.execute = function (target) {
+        this.receiver.action(target); // Command 實例加上對外的 execute function, 並執行掛入者的 action
+    };
+
+    // 呼叫者)
+    const Invoker = function (listAddCommand, listLessCommand) { // 建立指派者實例
+        this.listAddCommand = listAddCommand; // 將 Command 實例, 指派給自己的屬性以便操作 (Command 實例以存在接收者)
+        this.listLessCommand = listLessCommand; // 將 Command 實例, 指派給自己的屬性以便操作 (Command 實例以存在接收者)
+    };
+    Invoker.prototype.add = function (target) {
+        this.listAddCommand.execute(target); // 執行 Command 實例的 execute function (會執行接收者的action)
+    };
+    Invoker.prototype.less = function (target) {
+        this.listLessCommand.execute(target); // 執行 Command 實例的 execute function  (會執行接收者的action)
+    };
+
+    const listAddCommand = new CreateCommand(new ListAdd()); // 產生 Command 並傳給它, 接收者實例
+    const listLessCommand = new CreateCommand(new ListLess()); // 產生 Command 並傳給它, 接收者實例
+    const invoker = new Invoker(listAddCommand, listLessCommand); // 產生控制器, 掛入兩個 Command 實例
+    invoker.add('user'); // 從控制器派出命令, 操作 Command 實例的 execute, 它會在呼叫最終接收者的action
+    invoker.less('user'); // 從控制器派出命令, 操作 Command 實例的 execute, 它會在呼叫最終接收者的action
+</script>
+</body>
+</html>
