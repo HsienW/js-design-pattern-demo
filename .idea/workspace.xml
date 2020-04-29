@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2e444c3-6a3a-4a57-8339-0c71c9a18abd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/composite/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/template/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +49,7 @@
       <workItem from="1587713591248" duration="5105000" />
       <workItem from="1587950463297" duration="7414000" />
       <workItem from="1588038018927" duration="4876000" />
-      <workItem from="1588065444478" duration="2945000" />
+      <workItem from="1588065444478" duration="7403000" />
     </task>
     <task id="LOCAL-00001" summary="add proxy case">
       <created>1587459461252</created>
@@ -122,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588043555329</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add composite case">
+      <created>1588068401742</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1588068401742</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,21 +154,22 @@
     <MESSAGE value="add publish-subscribe case &amp; observer case" />
     <MESSAGE value="add publish-subscribe case" />
     <MESSAGE value="add command case" />
-    <option name="LAST_COMMIT_MESSAGE" value="add command case" />
+    <MESSAGE value="add composite case" />
+    <option name="LAST_COMMIT_MESSAGE" value="add composite case" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1588043552981">
+    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1588141733411">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588043552981" />
+    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588141733411" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1587625166973">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587625166973" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588043592534">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588068421377">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588043592534" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588068421377" />
     <state x="365" y="97" width="635" height="534" key="find.popup" timestamp="1587458544680">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -171,9 +178,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="358" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1587950556263" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1587603881311">
+    <state x="479" y="258" key="git4idea.ui.GitResetDialog" timestamp="1588141749754">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1587603881311" />
+    <state x="479" y="258" key="git4idea.ui.GitResetDialog/0.0.1366.728@0.0.1366.728" timestamp="1588141749754" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1588140744190">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1588140744190" />
   </component>
 </project>
