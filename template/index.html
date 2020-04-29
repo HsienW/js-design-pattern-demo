@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>template</title>
+</head>
+<body>
+<script>
+    function CallPhone() { // 建立抽象父類別
+    }
+
+    CallPhone.prototype.pickUpPhone = function () {
+        throw new Error('子類別必須重寫 pickUpPhone 方法');
+    };
+
+    CallPhone.prototype.dialNumber = function () {
+        throw new Error('子類別必須重寫 dialNumber 方法');
+    };
+
+    CallPhone.prototype.waitOtherSide = function () { // 若 Human 不加人名, 也可以讓抽象父類別執行等待
+        throw new Error('子類別必須重寫 waitOtherSide 方法');
+    };
+
+    CallPhone.prototype.getThrough = function () {
+        throw new Error('子類別必須重寫 getThrough 方法');
+    };
+
+    CallPhone.prototype.cutOffPhone = function () {
+        throw new Error('子類別必須重寫 cutOffPhone 方法');
+    };
+
+    CallPhone.prototype.initCall = function () { // 人與電腦打電話的順序是一樣的
+        this.pickUpPhone();
+        this.dialNumber();
+        this.waitOtherSide();
+        this.getThrough();
+        this.cutOffPhone();
+    };
+
+    const Human = function (name) {
+        this.name = name;
+    };
+    Human.prototype = new CallPhone();
+
+    // ----- 子類別覆寫父類別的 function -----
+    Human.prototype.pickUpPhone = function () {
+        console.log(this.name + '拿起電話');
+    };
+    Human.prototype.dialNumber = function () {
+        console.log(this.name + '播號中');
+    };
+    Human.prototype.waitOtherSide = function () {
+        console.log(this.name + '等待對方接起');
+    };
+    Human.prototype.getThrough = function () {
+        console.log(this.name + '打通電話');
+    };
+    Human.prototype.cutOffPhone = function () {
+        console.log(this.name + '掛掉電話');
+    };
+    // ---------------------------------------
+
+    const andy = new Human('Andy');
+    andy.initCall(); // 子類別的 prototype 上都沒有相對應的 initCall 物件, 所以會順著原型鏈往上找父類別的來用
+
+    const Computer = function () {
+    };
+    Computer.prototype = new CallPhone();
+
+    // ----- 子類別覆寫父類別的 function -----
+    Computer.prototype.pickUpPhone = function () {
+        console.log('電腦自動播號, 不用拿電話');
+    };
+    Computer.prototype.dialNumber = function () {
+        console.log('電腦自動播號中');
+    };
+    Computer.prototype.waitOtherSide = function () {
+        console.log('電腦等待對方接起');
+    };
+    Computer.prototype.getThrough = function () {
+        console.log('電腦打通廣告電話');
+    };
+    Computer.prototype.cutOffPhone = function () {
+        console.log('電腦掛掉電話');
+    };
+    // ----------------------------------------
+
+    const computer001 = new Computer();
+    computer001.initCall(); // 子類別的 prototype 上都沒有相對應的 initCall 物件, 所以會順著原型鏈往上找父類別的來用
+
+</script>
+</body>
+</html>
