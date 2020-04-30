@@ -7,85 +7,112 @@
 <body>
 <ul id="party-joiner-list"></ul>
 <script>
-    const PartyJoiner = function (genderType) {
-        this.genderType = genderType;
+
+    // Base case
+
+    const Joiner = function(gender, clothes) {
+        this.gender = gender;
     };
 
-    PartyJoiner.prototype.delete = function (id) {
-        partyController.setExternalState(id, this);
-        if (this.age < 18) {
-            return console.log('未成年, 刪除資格');
-        }
-        if (window.confirm('確定要取消此人的資格嗎?')) {
-            return console.log('刪除資格');
+    Joiner.prototype.takePhoto = function() {
+        console.log(this.gender + ' clothes=' + this.clothes);
+    };
+
+    const maleJoiner = new Joiner('male');
+    const femaleJoiner = new Joiner('femaleModel');
+
+    const maleClothes = ['西裝', '襯衫', '馬甲', '短褲'];
+    const femaleClothes = ['百褶裙', '褲裙', '牛仔褲', '洋裝'];
+
+    const genJoinerPhoto = function (target, clothes) {
+        for (let i = 0; i < clothes.length; i++) {
+            target.clothes = clothes[i];
+            target.takePhoto();
         }
     };
 
-    const joinerFactory = (function () {
-        const createFlyweightObj = {};
-        return {
-            create: function (genderType) {
-                if (createFlyweightObj[genderType]) {
-                    return createFlyweightObj[createFlyweightObj];
-                }
-                return createFlyweightObj[createFlyweightObj] = new PartyJoiner(genderType);
-            }
-        }
-    })();
+    genJoinerPhoto(maleJoiner, maleClothes);
+    genJoinerPhoto(femaleJoiner, femaleClothes);
 
-    const partyController = (function () {
-        let joinerBaseInfo = {};
-        return {
-            addJoiner: function (id, genderType, joinerName, joinerAge) {
-                const flyweightObj = joinerFactory.create(genderType);
-                const dom = createJoinerInfoDiv(joinerName, joinerAge);
-                joinerBaseInfo[id] = {
-                    name: joinerName,
-                    age: joinerAge,
-                    dom: dom
-                };
-                console.log(joinerBaseInfo);
-                return flyweightObj;
-
-                function createJoinerInfoDiv(joinerName, joinerAge) {
-                    const joinerListDom = document.getElementById('party-joiner-list');
-                    const joinerInfoSpan = document.createElement('span');
-                    joinerInfoSpan.innerHTM = '參加者姓名:' + joinerName + '年齡:' + joinerAge;
-                    joinerListDom.appendChild(joinerInfoSpan);
-                    return joinerListDom;
-                }
-
-                // function onDeleteJoiner() {
-                //     return flyweightObj.delFile(id);
-                // }
-            },
-            setExternalState: function (id, externalObj) {
-                const joinerData = joinerBaseInfo[id];
-                for (let key in joinerData) {
-                    externalObj[key] = joinerData[key];
-                }
-            }
-        }
-    })();
-
-    let id = 0;
-    window.startInviteJoiner = function (genderType, joinerList) {
-        joinerList.forEach(function (joiner, index) {
-            partyController.addJoiner(id++, genderType, joiner.name, joiner.age);
-        });
-    };
-
-    startInviteJoiner('male',
-        [{
-            name: 'Andy',
-            age: 22
-        }]);
-
-    startInviteJoiner('female',
-        [{
-            name: 'Ann',
-            age: 23
-        }]);
+    // const PartyJoiner = function (genderType) {
+    //     this.genderType = genderType;
+    // };
+    //
+    // PartyJoiner.prototype.delete = function (id) {
+    //     partyController.setExternalState(id, this);
+    //     if (this.age < 18) {
+    //         return console.log('未成年, 刪除資格');
+    //     }
+    //     if (window.confirm('確定要取消此人的資格嗎?')) {
+    //         return console.log('刪除資格');
+    //     }
+    // };
+    //
+    // const joinerFactory = (function () {
+    //     const createFlyweightObj = {};
+    //     return {
+    //         create: function (genderType) {
+    //             if (createFlyweightObj[genderType]) {
+    //                 return createFlyweightObj[createFlyweightObj];
+    //             }
+    //             return createFlyweightObj[createFlyweightObj] = new PartyJoiner(genderType);
+    //         }
+    //     }
+    // })();
+    //
+    // const partyController = (function () {
+    //     let joinerBaseInfo = {};
+    //     return {
+    //         addJoiner: function (id, genderType, joinerName, joinerAge) {
+    //             const flyweightObj = joinerFactory.create(genderType);
+    //             const dom = createJoinerInfoDiv(joinerName, joinerAge);
+    //             joinerBaseInfo[id] = {
+    //                 name: joinerName,
+    //                 age: joinerAge,
+    //                 dom: dom
+    //             };
+    //             console.log(joinerBaseInfo);
+    //             return flyweightObj;
+    //
+    //             function createJoinerInfoDiv(joinerName, joinerAge) {
+    //                 const joinerListDom = document.getElementById('party-joiner-list');
+    //                 const joinerInfoSpan = document.createElement('span');
+    //                 joinerInfoSpan.innerHTM = '參加者姓名:' + joinerName + '年齡:' + joinerAge;
+    //                 joinerListDom.appendChild(joinerInfoSpan);
+    //                 return joinerListDom;
+    //             }
+    //
+    //             // function onDeleteJoiner() {
+    //             //     return flyweightObj.delFile(id);
+    //             // }
+    //         },
+    //         setExternalState: function (id, externalObj) {
+    //             const joinerData = joinerBaseInfo[id];
+    //             for (let key in joinerData) {
+    //                 externalObj[key] = joinerData[key];
+    //             }
+    //         }
+    //     }
+    // })();
+    //
+    // let id = 0;
+    // window.startInviteJoiner = function (genderType, joinerList) {
+    //     joinerList.forEach(function (joiner, index) {
+    //         partyController.addJoiner(id++, genderType, joiner.name, joiner.age);
+    //     });
+    // };
+    //
+    // startInviteJoiner('male',
+    //     [{
+    //         name: 'Andy',
+    //         age: 22
+    //     }]);
+    //
+    // startInviteJoiner('female',
+    //     [{
+    //         name: 'Ann',
+    //         age: 23
+    //     }]);
 </script>
 </body>
 </html>
