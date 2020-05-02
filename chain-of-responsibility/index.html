@@ -6,38 +6,63 @@
 </head>
 <body>
 <script>
-    // TODO need to change base case to excellent case
-    // const order = function (orderType, isPaid, stock) {
-    //     if (orderType === 1) {
-    //         if (isPaid === true) {
-    //             console.log('訂購500，得到一張100優惠卷');
-    //         } else {
-    //             if (stock > 0) {
-    //                 console.log('有貨，但無任何優貨');
-    //             } else {
-    //                 console.log('沒貨');
-    //             }
-    //         }
-    //     } else if (orderType === 2) {
-    //         if (isPaid === true) {
-    //             console.log('訂購200，得到一張50優惠卷');
-    //         } else {
-    //             if (stock > 0) {
-    //                 console.log('有貨，但無任何優貨');
-    //             } else {
-    //                 console.log('沒貨');
-    //             }
-    //         }
-    //     } else {
-    //         if (stock > 0) {
-    //             console.log('有貨，但無任何優貨');
-    //         } else {
-    //             console.log('沒貨');
-    //         }
-    //     }
-    // };
-    //
-    // order(1, true, 10);
+
+    const levelA = function (gender, isBooking, booth) {
+        if (gender === 'male' && isBooking === true) {
+            return console.log('A級，男來賓，已訂位');
+        }
+        if (gender === 'female' && isBooking === true) {
+            return console.log('A級，女來賓，已訂位');
+        } else {
+            return 'nextStage';
+        }
+    };
+    const levelB = function (gender, isBooking, booth) {
+        if (gender === 'male' && isBooking === true) {
+            return console.log('B級，男來賓，已訂位');
+        }
+        if (gender === 'female' && isBooking === true) {
+            return console.log('B級，女來賓，已訂位');
+        } else {
+            return 'nextStage';
+        }
+    };
+    const levelNormal = function (gender, isBooking, booth) {
+        if (booth > 0) {
+            console.log('普通來賓，還有包廂，請至櫃台辦理');
+        } else {
+            console.log('抱歉，沒有包廂了');
+        }
+    };
+
+    const ChainController = function (handleFunction) {
+        this.stage = null;
+        this.handleFunction = handleFunction;
+    };
+
+    //指定下一個節點
+    ChainController.prototype.setNextStage = function (stage) {
+        return this.stage = stage;
+    };
+
+    //傳遞請求給某個節點
+    ChainController.prototype.bookingRequest = function () {
+        const request = this.handleFunction.apply(this, arguments);
+        if (request === 'nextStage') {
+            return this.stage && this.stage.bookingRequest.apply(this.stage, arguments);
+        }
+        return request;
+    };
+
+    const chainLevelA = new ChainController(levelA);
+    const chainLevelB = new ChainController(levelB);
+    const chainLevelNormal = new ChainController(levelNormal);
+
+    chainLevelA.setNextStage(chainLevelB);
+    chainLevelB.setNextStage(chainLevelNormal);
+
+    chainLevelA.bookingRequest('male', true, 10);
+
 </script>
 </body>
 </html>
