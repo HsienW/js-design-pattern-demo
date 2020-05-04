@@ -54,12 +54,22 @@
         return request;
     };
 
+    //指定下一個非同步節點
+    ChainController.prototype.asyncNextStage = function () {
+        return this.stage && this.stage.bookingRequest.apply(this.stage, arguments);
+    };
+
     const chainLevelA = new ChainController(levelA);
     const chainLevelB = new ChainController(levelB);
     const chainLevelNormal = new ChainController(levelNormal);
 
     chainLevelA.setNextStage(chainLevelB);
     chainLevelB.setNextStage(chainLevelNormal);
+
+    // TODO need change to test async case for Chain Controller.
+    setTimeout(() => {
+        chainLevelB.asyncNextStage(chainLevelNormal);
+    }, 1000);
 
     chainLevelA.bookingRequest('male', true, 10);
 
