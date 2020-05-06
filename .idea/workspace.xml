@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2e444c3-6a3a-4a57-8339-0c71c9a18abd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mediator/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chain-of-responsibility/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/chain-of-responsibility/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +52,9 @@
       <workItem from="1588038018927" duration="4876000" />
       <workItem from="1588065444478" duration="7508000" />
       <workItem from="1588223782186" duration="8568000" />
-      <workItem from="1588238305850" duration="8137000" />
+      <workItem from="1588238305850" duration="13392000" />
+      <workItem from="1588672264512" duration="717000" />
+      <workItem from="1588729039417" duration="4189000" />
     </task>
     <task id="LOCAL-00001" summary="add proxy case">
       <created>1587459461252</created>
@@ -166,7 +168,21 @@
       <option name="project" value="LOCAL" />
       <updated>1588346174587</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="update chain of responsibility case">
+      <created>1588392306681</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1588392306681</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update chain of responsibility case">
+      <created>1588564750874</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1588564750874</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,25 +213,26 @@
     <MESSAGE value="add flyweight case" />
     <MESSAGE value="update flyweight case" />
     <MESSAGE value="add chain of responsibility case" />
-    <option name="LAST_COMMIT_MESSAGE" value="add chain of responsibility case" />
+    <MESSAGE value="update chain of responsibility case" />
+    <option name="LAST_COMMIT_MESSAGE" value="update chain of responsibility case" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1588346173315">
+    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1588564749082">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588346173315" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1588234426128">
+    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588564749082" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1588673405259">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588234426128" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588346203906">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588673405259" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588564782290">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588346203906" />
-    <state x="365" y="97" width="635" height="534" key="find.popup" timestamp="1587458544680">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588564782290" />
+    <state x="365" y="97" width="635" height="534" key="find.popup" timestamp="1588733628696">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="365" y="97" width="635" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1587458544680" />
+    <state x="365" y="97" width="635" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1588733628696" />
     <state x="358" y="155" key="git4idea.merge.GitPullDialog" timestamp="1587950556263">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
