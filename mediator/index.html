@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Mediator</title>
+</head>
+<body>
+<script>
+
+    const Lessor = function (name, rentHomeType) {
+        this.name = name;
+        this.rentHomeType = rentHomeType;
+    };
+
+    const Tenantry = function (name, requestHomeType) {
+        this.name = name;
+        this.requestHomeType = requestHomeType;
+    };
+
+    Lessor.prototype.findNotice = function () {
+        console.log(this.name + '經過系統比對, 有找到符合你房屋的承租人');
+    };
+
+    Tenantry.prototype.findNotice = function () {
+        console.log(this.name + '經過系統比對, 有找到符合你需求的房子');
+    };
+
+    const andy = new Lessor('Andy', 1);
+    const billy = new Tenantry('billy', 1);
+
+    const homeMediator = {
+        allLessors: {
+            lessorData: []
+        },
+        allTenantry: {
+            tenantryData: []
+        },
+        addLessor: function (lessor) {
+            this.allLessors.lessorData.push(lessor);
+        },
+        noticeLessor: function (tenantry) {
+            this.allLessors.lessorData.forEach((homeItem) => {
+                if (tenantry.requestHomeType === homeItem.rentHomeType) {
+                    homeItem.findNotice();
+                }
+            });
+        },
+        addTenantry: function (tenantry) {
+            this.allTenantry.tenantryData.push(tenantry);
+        },
+        noticeTenantry: function (lessor) {
+            this.allTenantry.tenantryData.forEach((tenantryItem) => {
+                if (lessor.requestHomeType === tenantryItem.rentHomeType) {
+                    tenantryItem.findNotice();
+                }
+            });
+        },
+    };
+
+    // TODO need change mediator to more complete controller.
+    homeMediator.addLessor(andy);
+    homeMediator.addTenantry(billy);
+    homeMediator.noticeLessor(billy);
+    homeMediator.noticeTenantry(andy);
+
+    // homeMediator.allLessors
+    // const playerDirector = (function () {
+    //     const allPlayers = {}; // 玩家清單變成物件, 因為 key 要換成 teamColor
+    //     const operations = {}; // 訊息處理物件
+    //     // 訊息處理物件實作新增玩家與玩家死亡的實際行為
+    //     operations.addPlayer = function (player) {
+    //         let teamColor = player.teamColor;
+    //         allPlayers[teamColor] = allPlayers[teamColor] || [];
+    //         allPlayers[teamColor].push(player);
+    //     };
+    //     operations.playerDead = function (player) {
+    //         const teamColor = player.teamColor;
+    //         const teamPlayers = allPlayers[teamColor];
+    //         const isAllDead = true;
+    //
+    //         teamPlayers.some(function (partner) {
+    //             if (partner.isAlive) {
+    //                 isAllDead = false;
+    //                 return true;
+    //             }
+    //         });
+    //         if (isAllDead) {
+    //             teamPlayers.forEach(function (partner) {
+    //                 partner.lose();
+    //             });
+    //             for (const color in allPlayers) {
+    //                 if (color !== teamColor) {
+    //                     const otherColorTeamPlayers = allPlayers[color];
+    //                     otherColorTeamPlayers.forEach(function (enemy) {
+    //                         enemy.win();
+    //                     });
+    //                 }
+    //             }
+    //         }
+    //     };
+    //     //處理呼叫參數的介面
+    //     const ReceiveMessage = function () {
+    //         const message = Array.prototype.shift.call(arguments);
+    //         operations[message].apply(this, arguments);
+    //     }
+    //     return {
+    //         ReceiveMessage: ReceiveMessage
+    //     };
+    // })();
+
+</script>
+</body>
+</html>
