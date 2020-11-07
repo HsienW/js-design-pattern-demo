@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b2e444c3-6a3a-4a57-8339-0c71c9a18abd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chain-of-responsibility/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/chain-of-responsibility/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategy/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/strategy/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,9 +14,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1aqCehuY2y79Wps0JGxrzjgR4pg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -31,7 +31,9 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -48,11 +50,14 @@
       <workItem from="1587602675887" duration="8019000" />
       <workItem from="1587620844732" duration="11833000" />
       <workItem from="1587713591248" duration="5105000" />
-      <workItem from="1587950463297" duration="7414000" />
-      <workItem from="1588038018927" duration="4876000" />
-      <workItem from="1588065444478" duration="7508000" />
-      <workItem from="1588223782186" duration="8568000" />
-      <workItem from="1588238305850" duration="8137000" />
+      <workItem from="1587950463297" duration="7311000" />
+      <workItem from="1588338993123" duration="661000" />
+      <workItem from="1589039264653" duration="3500000" />
+      <workItem from="1589595547072" duration="21000" />
+      <workItem from="1591712307970" duration="619000" />
+      <workItem from="1591794399430" duration="83000" />
+      <workItem from="1594820448696" duration="39000" />
+      <workItem from="1604738657493" duration="7567000" />
     </task>
     <task id="LOCAL-00001" summary="add proxy case">
       <created>1587459461252</created>
@@ -110,108 +115,45 @@
       <option name="project" value="LOCAL" />
       <updated>1587720523397</updated>
     </task>
-    <task id="LOCAL-00009" summary="add publish-subscribe case">
-      <created>1587957792935</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1587957792935</updated>
-    </task>
-    <task id="LOCAL-00010" summary="add command case">
-      <created>1588043555329</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1588043555329</updated>
-    </task>
-    <task id="LOCAL-00011" summary="add composite case">
-      <created>1588068401742</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1588068401742</updated>
-    </task>
-    <task id="LOCAL-00012" summary="add template case">
-      <created>1588141734988</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1588141734988</updated>
-    </task>
-    <task id="LOCAL-00013" summary="add template case">
-      <created>1588141760363</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1588141760363</updated>
-    </task>
-    <task id="LOCAL-00014" summary="add flyweight case">
-      <created>1588234299201</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1588234299201</updated>
-    </task>
-    <task id="LOCAL-00015" summary="update flyweight case">
-      <created>1588239629388</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1588239629388</updated>
-    </task>
-    <task id="LOCAL-00016" summary="add chain of responsibility case">
-      <created>1588346174587</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1588346174587</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add proxy case" />
     <MESSAGE value="update proxy case" />
     <MESSAGE value="add iterator case" />
-    <MESSAGE value="add publish-subscribe case &amp; observer case" />
     <MESSAGE value="add publish-subscribe case" />
-    <MESSAGE value="add command case" />
-    <MESSAGE value="add composite case" />
-    <MESSAGE value="add template case" />
-    <MESSAGE value="add flyweight case" />
-    <MESSAGE value="update flyweight case" />
-    <MESSAGE value="add chain of responsibility case" />
-    <option name="LAST_COMMIT_MESSAGE" value="add chain of responsibility case" />
+    <MESSAGE value="add publish-subscribe case &amp; observer case" />
+    <option name="LAST_COMMIT_MESSAGE" value="add publish-subscribe case &amp; observer case" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1588346173315">
+    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1587720521874">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588346173315" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1588234426128">
+    <state x="296" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587720521874" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1587625166973">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588234426128" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588346203906">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587625166973" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587720545428">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588346203906" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587720545428" />
     <state x="365" y="97" width="635" height="534" key="find.popup" timestamp="1587458544680">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -220,17 +162,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="358" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1587950556263" />
-    <state x="479" y="258" key="git4idea.ui.GitResetDialog" timestamp="1588141749754">
+    <state x="339" y="162" key="run.anything.popup" timestamp="1587603881311">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="479" y="258" key="git4idea.ui.GitResetDialog/0.0.1366.728@0.0.1366.728" timestamp="1588141749754" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1588140744190">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1588140744190" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1588388057515">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1588388057515" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1587603881311" />
   </component>
 </project>

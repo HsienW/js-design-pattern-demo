@@ -5,13 +5,84 @@
     <title>Strategy</title>
 </head>
 <body>
-<form id="registerFrom" method="post">
-    <div>Account: <input type="text" name="account"/></div>
-    <div>Password: <input type="text" name="password"/></div>
-    <div>E-mail: <input type="text" name="mail"/></div>
-    <button onclick="onSubmit">submit</button>
-</form>
+<!--<form id="registerFrom" method="post">-->
+<!--    <div>Account: <input type="text" name="account"/></div>-->
+<!--    <div>Password: <input type="text" name="password"/></div>-->
+<!--    <div>E-mail: <input type="text" name="mail"/></div>-->
+<!--    <button onclick="onSubmit">submit</button>-->
+<!--</form>-->
+
+<select name="a-list">
+    <option value="aData">A Data</option>
+</select>
+<div class="displayList"></div>
+
 <script>
+    /** 小範例: 聯集選單 **/
+
+    const aList = ['a-1', 'a-2', 'a-3', 'a-4', 'a-5'];
+    const bList = ['b-1', 'b-2', 'b-3', 'b-4', 'b-5'];
+    const cList = ['c-1', 'c-2', 'c-3', 'c-4', 'c-5'];
+
+    let displayList = [];
+
+    /** 不好的例子 **/
+        // const getDisplayListData = (listName) => {
+        //     if (listName === 'a') {
+        //         return aList;
+        //     }
+        //     if (listName === 'b') {
+        //         return bList;
+        //     }
+        //     if (listName === 'c') {
+        //         return cList;
+        //     }
+        // };
+
+    const List = function (data) {
+            this.data = data;
+        }
+
+    List.prototype.getListData = function () {
+        return this.data;
+    }
+
+    const aListData = new List(aList);
+    const bListData = new List(bList);
+    const cListData = new List(cList)
+
+    // const listData = {
+    //     'a': function () {
+    //         return aList;
+    //     },
+    //     'b': function () {
+    //         return bList;
+    //     },
+    //     'c': function () {
+    //         return cList;
+    //     }
+    // };
+
+    // const getDisplayListData = (listName) => {
+    //     return listData[listName];
+    // };
+
+    // const updateDisplayList = (listName) => {
+    //     let currentData = getDisplayListData(listName);
+    //     displayList.length = 0;
+    //     displayList.push(...currentData);
+    // }
+
+    const updateDisplayList = (listName) => {
+        let currentData = listName.getListData();
+        displayList.length = 0;
+        displayList.push(...currentData);
+        console.log(displayList);
+    }
+
+    updateDisplayList(aListData);
+
+
     // 策略物件
     const strategies = {
         isNotEmpty: (value, errorMsg) => {
@@ -107,6 +178,7 @@
     };
 
     const registerFrom = document.getElementById('registerFrom');
+
     // const registerFrom = document.getElementById('registerFrom');
 
     function onSubmit() {
@@ -117,6 +189,8 @@
             return false;
         }
     }
+
+
 </script>
 </body>
 </html>
