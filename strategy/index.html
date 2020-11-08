@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title>Strategy</title>
 </head>
 <body>
-<!--<form id="registerFrom" method="post">-->
-<!--    <div>Account: <input type="text" name="account"/></div>-->
-<!--    <div>Password: <input type="text" name="password"/></div>-->
-<!--    <div>E-mail: <input type="text" name="mail"/></div>-->
-<!--    <button onclick="onSubmit">submit</button>-->
+<!--<form id='registerFrom' method='post'>-->
+<!--    <div>Account: <input type='text' name='account'/></div>-->
+<!--    <div>Password: <input type='text' name='password'/></div>-->
+<!--    <div>E-mail: <input type='text' name='mail'/></div>-->
+<!--    <button onclick='onSubmit'>submit</button>-->
 <!--</form>-->
 
-<select name="a-list">
-    <option value="aData">A Data</option>
+<div>
+    <p>Current Data: <span class='current-data'></span></p>
+</div>
+<div>Change Data:</div>
+<select class='change-data'>
+    <option value='aListData'>A Data</option>
+    <option value='bListData'>B Data</option>
+    <option value='cListData'>C Data</option>
 </select>
-<div class="displayList"></div>
+<div class='displayList'></div>
 
 <script>
     /** 小範例: 聯集選單 **/
@@ -80,7 +86,15 @@
         console.log(displayList);
     }
 
-    updateDisplayList(aListData);
+    updateDisplayList();
+    // window.addEventListener('load', () => {
+    //     document.getElementsByClassName('current-data')[0].innerHTML = 'A Data';
+    // });
+    //
+    // document.getElementsByClassName('change-data')[0].addEventListener('change', function () {
+    //     // console.log(this.value);
+    //     updateDisplayList(this.value);
+    // });
 
 
     // 策略物件
